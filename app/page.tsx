@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button";
+import Hero from "@/components/sections/Hero";
+import React from "react";
 
 export default function Home() {
-	return (
-		<main>
-			<Button>hello shadcnui</Button>
-		</main>
-	);
+  return <Hero />;
 }
