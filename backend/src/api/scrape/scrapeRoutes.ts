@@ -20,7 +20,7 @@ const scrapeResponseSchema = z.object({
 
 scrapeRegistry.registerPath({
   method: "post",
-  path: "/scrape",
+  path: "/api/scrape",
   tags: ["Scraping"],
   request: {
     body: {
@@ -48,7 +48,7 @@ const getSummaryResponseSchema = z.object({
 
 scrapeRegistry.registerPath({
   method: "get",
-  path: "/scrape/{id}",
+  path: "/api/scrape/{id}",
   tags: ["Scraping"],
   request: {
     //params: z.object({ id: z.string() }),
