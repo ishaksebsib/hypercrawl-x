@@ -57,7 +57,7 @@ const Hero = () => {
 					<Input
 						onChange={(e) => setUrl(e.target.value)}
 						type="text"
-						placeholder="https://en.wikipedia.org/wiki/Alexander_the_Great"
+						placeholder="https://"
 						className="text-white rounded-lg border border-neutral-400 focus:ring-2 focus:ring-teal-500  w-full relative z-10 bg-neutral-950 placeholder:text-neutral-400 placeholder:text-xs sm:placeholder:text-md md:placeholder:text-lg"
 					/>
 					<HoverBorderGradient
