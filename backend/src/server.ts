@@ -10,9 +10,13 @@ import rateLimiter from "@/common/middleware/rateLimiter";
 import requestLogger from "@/common/middleware/requestLogger";
 import { env } from "@/common/utils/envConfig";
 import { scrapeRouter } from "./api/scrape/scrapeRoutes";
+import { connectDB } from "./db";
 
 const logger = pino({ name: "server start" });
 const app: Express = express();
+
+// connect to the database
+connectDB();
 
 // Set the application to trust the reverse proxy
 app.set("trust proxy", true);

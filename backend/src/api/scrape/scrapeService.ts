@@ -1,6 +1,7 @@
 import puppeteer from "puppeteer";
 import { HfInference } from "@huggingface/inference";
 import { env } from "@/common/utils/envConfig";
+import { logger } from "@/server";
 
 export const scrapeService = async (url: string): Promise<string> => {
   if (!url) throw new Error("URL is required");
@@ -40,7 +41,7 @@ export const getSummary = async (
 
     return result.summary_text;
   } catch (error) {
-    console.error("Failed to generate summary:", (error as Error).message);
+    logger.error(`Failed to generate summary: ${(error as Error).message}`);
     throw new Error("Failed to generate summary");
   }
 };
