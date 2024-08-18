@@ -10,10 +10,13 @@ export const scrapeController = async (
   const { url } = req.body;
 
   try {
-    const summary = await scrapeService(url);
+    const { id, summary } = await scrapeService(url);
     const serviceResponse = ServiceResponse.success(
       "Scraping and summarization successful",
-      summary,
+      {
+        id,
+        summary,
+      },
     );
     handleServiceResponse(serviceResponse, res);
   } catch (error) {

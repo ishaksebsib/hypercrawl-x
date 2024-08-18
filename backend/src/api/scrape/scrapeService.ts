@@ -2,8 +2,11 @@ import puppeteer from "puppeteer";
 import { HfInference } from "@huggingface/inference";
 import { env } from "@/common/utils/envConfig";
 import { logger } from "@/server";
+import { ScrapeData } from "./scrapeModel";
 
-export const scrapeService = async (url: string): Promise<string> => {
+export const scrapeService = async (
+  url: string,
+): Promise<{ id: string; summary: string }> => {
   if (!url) throw new Error("URL is required");
 
   const browser = await puppeteer.launch({ headless: true });
@@ -14,7 +17,9 @@ export const scrapeService = async (url: string): Promise<string> => {
     const textContent = await page.evaluate(() => document.body.innerText);
     const summary = await getSummary(textContent, 80);
 
-    return summary;
+    const savedData = await ScrapeData.create({ url, summary });
+
+    return { id: savedData.id, summary };
   } catch (error) {
     throw new Error("Failed to scrape the site: " + (error as Error).message);
   } finally {
