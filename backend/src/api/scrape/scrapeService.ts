@@ -5,23 +5,30 @@ import { logger } from "@/server";
 import { ScrapeData } from "./scrapeModel";
 
 export const scrapeService = async (
-  url: string,
+  url: string
 ): Promise<{ id: string; summary: string }> => {
   if (!url) throw new Error("URL is required");
 
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: "/usr/bin/google-chrome",
+  });
   const page = await browser.newPage();
 
   try {
     await page.goto(url, { waitUntil: "networkidle2" });
-    const textContent = await page.evaluate(() => document.body.innerText);
+    const textContent = await page.evaluate(
+      () => document.body.innerText
+    );
     const summary = await getSummary(textContent, 80);
 
     const savedData = await ScrapeData.create({ url, summary });
 
     return { id: savedData.id, summary };
   } catch (error) {
-    throw new Error("Failed to scrape the site: " + (error as Error).message);
+    throw new Error(
+      "Failed to scrape the site: " + (error as Error).message
+    );
   } finally {
     await browser.close();
   }
@@ -29,7 +36,7 @@ export const scrapeService = async (
 
 export const getSummary = async (
   text: string,
-  maxOutput: number,
+  maxOutput: number
 ): Promise<string> => {
   const HF_ACCESS_TOKEN = env.HF_ACCESS_TOKEN;
 
@@ -46,7 +53,9 @@ export const getSummary = async (
 
     return result.summary_text;
   } catch (error) {
-    logger.error(`Failed to generate summary: ${(error as Error).message}`);
+    logger.error(
+      `Failed to generate summary: ${(error as Error).message}`
+    );
     throw new Error("Failed to generate summary");
   }
 };
