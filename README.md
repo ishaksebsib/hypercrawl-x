@@ -69,41 +69,36 @@ To set up and start using HyperCrawl-X:
 | **Deployment** | Render (Backend), Docker                                                             |
 | **Testing**    | Jest, Playwright (E2E)                                                               |
 
-
 ## Project Structure
 
-The project is organized into a clear and modular folder structure to ensure maintainability, scalability, and ease of collaboration. Below is a breakdown of the key directories and their contents:
+The project is organized into a clear and modular folder structure to ensure maintainability, scalability, and ease of collaboration. Below is a breakdown of the key directories and their contents
+```plaintext
+Backend/
+├── biome.json                 # Configuration file for the project environment.
+├── Dockerfile                 # Instructions to create a Docker image for the backend service.
+├── .github/
+│   └── workflows/             # Contains CI/CD pipeline configurations specific to the backend.
+├── src/
+│   ├── api/                   # Contains API endpoint implementations.
+│   │   ├── healthCheck/       # Health check API to monitor the service status.
+│   │   └── scrape/            # Web scraping related API controllers, models, and routes (MVC).
+│   ├── api-docs/              # Scripts and tests for generating and managing API documentation.
+│   ├── common/                # Shared utilities, middlewares, and models used across the backend.
+│   ├── db.ts                  # Database connection and setup logic.
+│   ├── index.ts               # Entry point for the backend service.
+│   └── server.ts              # Main server configuration and initialization.
+├── tsconfig.json              # TypeScript configuration for the backend.
+└── vite.config.mts            # Configuration for Vite, a build tool used in the project.
 
-## `Backend/`
-This directory contains all the server-side logic and API implementations.
-
-- **biome.json**: Configuration file for the project environment.
-- **Dockerfile**: Instructions to create a Docker image for the backend service.
-- **.github/workflows/**: Contains CI/CD pipeline configurations specific to the backend.
-- **src/**: Source code for the backend, organized as follows:
-  - **api/**: Contains API endpoint implementations.
-    - **healthCheck/**: Health check API to monitor the service status.
-    - **scrape/**: Web scraping related API controllers, models, and routes (MVC).
-  - **api-docs/**: Scripts and tests for generating and managing API documentation.
-  - **common/**: Shared utilities, middlewares, and models used across the backend.
-  - **db.ts**: Database connection and setup logic.
-  - **index.ts**: Entry point for the backend service.
-  - **server.ts**: Main server configuration and initialization.
-
-- **tsconfig.json**: TypeScript configuration for the backend.
-- **vite.config.mts**: Configuration for Vite, a build tool used in the project.
-
-## `Frontend/`
-This directory houses the client-side application, developed using modern web technologies.
-
-- **app/**: Main application directory containing global styles and layout components.
-- **components/**: Reusable UI components and sections used across the frontend.
-- **components.json**: Configuration file for managing frontend components.
-- **lib/**: Utility functions and API interactions for the frontend.
-- **public/**: Static assets such as images and icons.
-- **tailwind.config.ts**: Tailwind CSS configuration file.
-- **tsconfig.json**: TypeScript configuration for the frontend.
-
+Frontend/
+├── app/                       # Main application directory containing global styles and layout components.
+├── components/                # Reusable UI components and sections used across the frontend.
+├── components.json            # Configuration file for managing frontend components.
+├── lib/                       # Utility functions and API interactions for the frontend.
+├── public/                    # Static assets such as images and icons.
+├── tailwind.config.ts         # Tailwind CSS configuration file.
+└── tsconfig.json              # TypeScript configuration for the frontend.
+```
 
 ## **Contributing**
 
