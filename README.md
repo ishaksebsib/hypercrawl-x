@@ -19,7 +19,7 @@ The digital landscape is vast, and extracting meaningful data from the web requi
 
 This architecture ensures a clean separation of concerns, which makes the system more maintainable, scalable, and testable.
 
-![System Architecture](./system_architecture.png)
+![System Architecture](./screenshots/system_architecture.png)
 
 ## Product Highlights
 
